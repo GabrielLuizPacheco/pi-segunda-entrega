@@ -1,16 +1,19 @@
 <template>
   <q-btn
+    unelevated
     class="button full-width q-mt-md"
-    color="primary"
-    text-color="white"
+    :color="secondary ? 'white' : 'primary'"
+    :text-color="secondary ? 'primary' : 'white'"
     :label="label"
   />
 </template>
 
 <script setup lang="ts">
-defineProps({
-  label: String,
-});
+interface ButtonProps {
+  label: string;
+  secondary?: boolean;
+}
+defineProps<ButtonProps>();
 </script>
 
 <style scoped>

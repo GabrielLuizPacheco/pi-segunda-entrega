@@ -1,14 +1,13 @@
 <template>
   <header class="bg-white">
     <q-toolbar>
-      <q-btn
-        flat
-        dense
-        round
-        icon="mdi-chevron-left"
-        aria-label="Menu"
-        color="black"
+      <q-icon
+        name="mdi-chevron-left"
+        class="cursor-pointer"
+        size="32px"
+        color="dark"
       />
+
       <q-toolbar-title>{{ title }}</q-toolbar-title>
     </q-toolbar>
   </header>

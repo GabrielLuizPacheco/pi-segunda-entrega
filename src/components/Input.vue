@@ -15,6 +15,8 @@
           :name="icon"
           @click="emit('iconClicked')"
           class="cursor-pointer"
+          size="24px"
+          color="primary"
         />
       </q-avatar>
     </template>

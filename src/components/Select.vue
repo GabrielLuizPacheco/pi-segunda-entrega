@@ -1,10 +1,13 @@
 <template>
   <q-select
+    hide-bottom-space
     class="full-width q-mb-md"
     outlined
     v-model="value"
     :options="options"
     :label="label"
+    :error="!!errorMsg"
+    :error-message="errorMsg"
   >
     <template v-slot:label>
       {{ label }}
@@ -21,6 +24,7 @@ interface IOption {
 
 interface SelectProps {
   label: string;
+  errorMsg?: string;
   required?: boolean;
   options: IOption[];
 }

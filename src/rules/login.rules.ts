@@ -1,12 +1,6 @@
 import { helpers, required, email } from '@vuelidate/validators';
 import { computed } from 'vue';
-
-const passwordRegex =
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-
-function passwordValidation(val: string) {
-  return passwordRegex.test(val);
-}
+import { passwordValidation } from 'src/utils/validations';
 
 const loginRules = computed(() => ({
   identification: {

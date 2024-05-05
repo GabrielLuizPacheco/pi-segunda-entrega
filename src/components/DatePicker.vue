@@ -5,6 +5,9 @@
     v-model="date"
     :label="label"
     class="q-mb-md full-width"
+    mask="##/##/####"
+    :error="!!errorMsg"
+    :error-message="errorMsg"
   >
     <template v-slot:label>
       {{ label }}
@@ -13,7 +16,7 @@
     <template v-slot:append>
       <q-icon name="event" class="cursor-pointer">
         <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-          <q-date v-model="date">
+          <q-date v-model="date" mask="DD/MM/YYYY">
             <div class="row items-center justify-end">
               <q-btn v-close-popup label="Close" color="primary" flat />
             </div>
@@ -28,6 +31,7 @@
 interface DatePickerProps {
   label: string;
   required?: boolean;
+  errorMsg?: string;
 }
 
 const date = defineModel<string>();

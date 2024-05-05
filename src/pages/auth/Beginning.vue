@@ -4,9 +4,20 @@
       <h5 class="text-primary">LOGO_EMPRESA</h5>
       <p class="text-dark">Seu aplicativo de agendamentos clínicos</p>
       <div class="row items-center">
-        <Button secondary label="Conveniar-se" type="button" class="col" />
+        <Button
+          secondary
+          label="Conveniar-se"
+          type="button"
+          class="col"
+          @click="router.push({ path: '/register' })"
+        />
         <q-space class="col q-ma-md" />
-        <Button label="Login" type="button" class="col" />
+        <Button
+          label="Login"
+          type="button"
+          class="col"
+          @click="router.push({ path: '/login' })"
+        />
       </div>
     </div>
   </q-page>
@@ -14,6 +25,9 @@
 
 <script setup lang="ts">
 import Button from 'src/components/Button.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 </script>
 
 <style scoped>

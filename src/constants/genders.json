@@ -1,0 +1,14 @@
+[
+  {
+    "value": 1,
+    "label": "Masculino"
+  },
+  {
+    "value": 2,
+    "label": "Feminino"
+  },
+  {
+    "value": 3,
+    "label": "Outro"
+  }
+]

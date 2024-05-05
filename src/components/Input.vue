@@ -6,9 +6,14 @@
     :label="label"
     class="q-mb-md"
     :type="type"
+    :mask="mask"
     :error="!!errorMsg"
     :error-message="errorMsg"
   >
+    <template v-slot:label>
+      {{ label }}
+      <span v-if="required" class="text-red">*</span>
+    </template>
     <template v-if="!!icon" v-slot:append>
       <q-avatar>
         <q-icon
@@ -29,6 +34,8 @@ interface InputProps {
   type?: string;
   icon?: string;
   errorMsg?: string;
+  required?: boolean;
+  mask?: string;
 }
 
 defineProps<InputProps>();

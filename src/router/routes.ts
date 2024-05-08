@@ -19,7 +19,13 @@ const routes: RouteRecordRaw[] = [
     meta: {
       requiredAuth: true,
     },
-    children: [{ path: '/home', component: () => import('pages/Home.vue') }],
+    children: [
+      { path: '/home', component: () => import('pages/Home.vue') },
+      {
+        path: '/profile',
+        component: () => import('pages/profile/Profile.vue'),
+      },
+    ],
   },
   // Always leave this as last one,
   // but you can also remove it

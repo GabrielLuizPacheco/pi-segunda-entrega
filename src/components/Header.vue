@@ -1,18 +1,25 @@
 <template>
   <header class="bg-white text-dark">
     <q-toolbar>
-      <q-icon
-        v-if="!hideIcon"
-        name="mdi-chevron-left"
-        class="cursor-pointer"
-        size="32px"
-        color="dark"
-        @click="router.go(-1)"
-      />
+      <div v-if="!hideIcon" class="col">
+        <q-icon
+          style="z-index: 1"
+          name="mdi-chevron-left"
+          class="cursor-pointer"
+          size="32px"
+          color="dark"
+          @click="router.go(-1)"
+        />
+      </div>
 
-      <q-toolbar-title style="font-weight: 600" class="q-ml-xs">{{
-        title
-      }}</q-toolbar-title>
+      <q-toolbar-title
+        style="font-weight: 600"
+        class="col q-ml-xs"
+        :class="hasIconAndTitle && 'text-center'"
+        >{{ title }}</q-toolbar-title
+      >
+
+      <div class="col"></div>
     </q-toolbar>
   </header>
 </template>
@@ -26,5 +33,7 @@ interface HeaderProps {
 
 const router = useRouter();
 
-defineProps<HeaderProps>();
+const { hideIcon, title } = defineProps<HeaderProps>();
+
+const hasIconAndTitle = !hideIcon && title;
 </script>

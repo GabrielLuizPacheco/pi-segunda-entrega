@@ -4,28 +4,28 @@
     "title": "Editar perfil",
     "icon": "mdi-account-outline",
     "disabled": false,
-    "url": "/editprofile"
+    "url": "/profile/editprofile"
   },
   {
     "id": 2,
     "title": "Alterar senha",
     "icon": "mdi-lock-outline",
     "disabled": false,
-    "url": "/changepassword"
+    "url": "/profile/changepassword"
   },
   {
     "id": 3,
     "title": "Cartão digital",
     "icon": "mdi-card-account-details-outline",
     "disabled": true,
-    "url": "/digitalcard"
+    "url": null
   },
   {
     "id": 4,
     "title": "Ajuda",
     "icon": "mdi-help",
     "disabled": false,
-    "url": "/help"
+    "url": "/profile/help"
   },
   {
     "id": 5,

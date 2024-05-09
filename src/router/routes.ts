@@ -27,6 +27,20 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/home',
+    component: () => import('layouts/CleanLayout.vue'),
+    meta: {
+      requiredAuth: true,
+    },
+    children: [
+      {
+        path: '/profile/editprofile',
+        component: () => import('pages/profile/EditProfile.vue'),
+      },
+    ],
+  },
+
   // Always leave this as last one,
   // but you can also remove it
   {

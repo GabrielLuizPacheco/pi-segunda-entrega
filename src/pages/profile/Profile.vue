@@ -33,6 +33,7 @@
         <span class="text-grey-9">{{ option.title }}</span>
       </q-item>
     </q-list>
+    <p class="copyright text-grey-6">Powered by Grupo 37</p>
   </q-page>
 </template>
 
@@ -54,5 +55,11 @@ function onLogout() {
 <style scoped>
 .item {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.copyright {
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
 }
 </style>

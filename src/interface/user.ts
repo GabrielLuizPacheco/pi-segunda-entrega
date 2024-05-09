@@ -8,6 +8,7 @@ export interface IUser {
 }
 
 export interface IChangePassword {
+  currentPassword?: string;
   rePassword: string;
   password: string;
 }

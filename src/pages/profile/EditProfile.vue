@@ -52,8 +52,12 @@ const v$ = useVuelidate(rules, newInfos);
 
 function dialog() {
   $q.dialog({
-    title: 'Edição de perfil',
+    title: 'Sucesso!',
     message: 'Edição de perfil feita com sucesso!',
+    persistent: true,
+    ok: {
+      onclick: () => router.go(-1),
+    },
   });
 }
 

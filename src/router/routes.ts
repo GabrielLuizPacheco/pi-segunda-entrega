@@ -38,6 +38,14 @@ const routes: RouteRecordRaw[] = [
         path: '/profile/editprofile',
         component: () => import('pages/profile/EditProfile.vue'),
       },
+      {
+        path: '/profile/changepassword',
+        component: () => import('pages/profile/ChangePassword.vue'),
+      },
+      {
+        path: '/profile/help',
+        component: () => import('pages/profile/Help.vue'),
+      },
     ],
   },
 

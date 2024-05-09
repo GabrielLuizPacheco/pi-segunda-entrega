@@ -9,6 +9,7 @@
     :mask="mask"
     :error="!!errorMsg"
     :error-message="errorMsg"
+    :disable="disable"
   >
     <template v-slot:label>
       {{ label }}
@@ -36,6 +37,7 @@ interface InputProps {
   errorMsg?: string;
   required?: boolean;
   mask?: string;
+  disable?: boolean;
 }
 
 defineProps<InputProps>();

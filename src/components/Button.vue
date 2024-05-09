@@ -13,6 +13,7 @@ interface ButtonProps {
   label: string;
   secondary?: boolean;
 }
+
 defineProps<ButtonProps>();
 </script>
 

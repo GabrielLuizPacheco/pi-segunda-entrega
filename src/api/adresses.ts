@@ -11,7 +11,7 @@ export interface IAddress {
 export async function getAdresses(search: string) {
   const result = await api
     .get(`enderecos/busca?especialidade=${search}`)
-    .then((response: AxiosResponse<IAddress>) => {
+    .then((response: AxiosResponse<IAddress[]>) => {
       return response.data;
     });
 

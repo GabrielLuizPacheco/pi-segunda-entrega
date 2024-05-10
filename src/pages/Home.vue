@@ -9,8 +9,8 @@
         @request="(e) => loadAdresses(e)"
       />
     </header>
-    <q-scroll-area style="height: 75vh">
-      <q-list v-if="loading">
+    <q-scroll-area style="height: 75vh" v-if="loading">
+      <q-list>
         <q-item
           v-for="especialidade in especialidades"
           :key="especialidade.id"
@@ -21,12 +21,29 @@
           <q-skeleton style="width: 45%" />
         </q-item>
       </q-list>
-      <q-list v-else>
+    </q-scroll-area>
+
+    <div
+      v-if="!loading && adresses.length < 1"
+      style="height: 75vh"
+      class="row items-center justify-center"
+    >
+      <div>
+        <div class="row items-center justify-center">
+          <q-icon name="mdi-medical-bag" size="64px" color="grey-4" />
+        </div>
+        <p class="text-grey-6">Especialidade não encontrada</p>
+      </div>
+    </div>
+
+    <q-scroll-area style="height: 75vh" v-if="!loading && adresses.length > 1">
+      <q-list>
         <q-item
           v-for="address in adresses"
           :key="address.id"
           clickable
           class="item column q-mx-md q-py-md"
+          @click="() => onSelectAddress(address)"
         >
           <div class="row items-center q-mb-xs">
             <q-icon
@@ -57,10 +74,19 @@ import { IAddress, getAdresses } from 'src/api/adresses';
 import { ref, onBeforeMount } from 'vue';
 import InputSearch from 'src/components/InputSearch.vue';
 import especialidades from 'src/constants/specialty.json';
+import { useSchedulingStore } from 'src/stores/scheduling-store';
 
-const loading = ref(false);
+const loading = ref(true);
 const adresses = ref<IAddress[]>([]);
-const noAddresses = ref(false);
+const { setLastAppointment } = useSchedulingStore();
+
+function onSelectAddress(address: IAddress) {
+  // setLastAppointment({
+  //   location: address.endereco,
+  //   doctor: address.medico,
+  //   specialty: address.especialidade,
+  // });
+}
 
 function loadAdresses(search: string) {
   loading.value = true;

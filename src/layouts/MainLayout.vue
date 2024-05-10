@@ -13,7 +13,6 @@
           class="cursor-pointer"
           size="32px"
           :color="route.path === '/' ? 'primary' : 'grey-6'"
-          @click="onLogout()"
         />
       </div>
       <div class="col row justify-center">

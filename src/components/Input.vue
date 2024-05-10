@@ -38,6 +38,7 @@ interface InputProps {
   required?: boolean;
   mask?: string;
   disable?: boolean;
+  debounce?: boolean;
 }
 
 defineProps<InputProps>();

@@ -13,7 +13,6 @@
           class="cursor-pointer"
           size="32px"
           :color="route.path === '/' ? 'primary' : 'grey-6'"
-          @click="onLogout()"
         />
       </div>
       <div class="col row justify-center">
@@ -22,6 +21,7 @@
           class="cursor-pointer"
           size="32px"
           :color="route.path === '/home' ? 'primary' : 'grey-6'"
+          @click="router.push({ path: '/home' })"
         />
       </div>
       <div class="col row justify-center">
@@ -30,6 +30,7 @@
           class="cursor-pointer"
           size="32px"
           :color="route.path === '/profile' ? 'primary' : 'grey-6'"
+          @click="router.push({ path: '/profile' })"
         />
       </div>
     </q-footer>

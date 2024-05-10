@@ -19,8 +19,36 @@ const routes: RouteRecordRaw[] = [
     meta: {
       requiredAuth: true,
     },
-    children: [{ path: '/home', component: () => import('pages/Home.vue') }],
+    children: [
+      { path: '/home', component: () => import('pages/Home.vue') },
+      {
+        path: '/profile',
+        component: () => import('pages/profile/Profile.vue'),
+      },
+    ],
   },
+  {
+    path: '/home',
+    component: () => import('layouts/CleanLayout.vue'),
+    meta: {
+      requiredAuth: true,
+    },
+    children: [
+      {
+        path: '/profile/editprofile',
+        component: () => import('pages/profile/EditProfile.vue'),
+      },
+      {
+        path: '/profile/changepassword',
+        component: () => import('pages/profile/ChangePassword.vue'),
+      },
+      {
+        path: '/profile/help',
+        component: () => import('pages/profile/Help.vue'),
+      },
+    ],
+  },
+
   // Always leave this as last one,
   // but you can also remove it
   {

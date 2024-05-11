@@ -75,17 +75,20 @@ import { ref, onBeforeMount } from 'vue';
 import InputSearch from 'src/components/InputSearch.vue';
 import especialidades from 'src/constants/specialty.json';
 import { useSchedulingStore } from 'src/stores/scheduling-store';
+import { useRouter } from 'vue-router';
 
 const loading = ref(true);
 const adresses = ref<IAddress[]>([]);
 const { setLastAppointment } = useSchedulingStore();
+const router = useRouter();
 
 function onSelectAddress(address: IAddress) {
-  // setLastAppointment({
-  //   location: address.endereco,
-  //   doctor: address.medico,
-  //   specialty: address.especialidade,
-  // });
+  setLastAppointment({
+    location: address.endereco,
+    doctor: address.medico,
+    specialty: address.especialidade,
+  });
+  router.push({ path: '/newschedule' });
 }
 
 function loadAdresses(search: string) {

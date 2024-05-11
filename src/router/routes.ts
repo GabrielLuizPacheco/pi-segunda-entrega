@@ -46,6 +46,10 @@ const routes: RouteRecordRaw[] = [
         path: '/profile/help',
         component: () => import('pages/profile/Help.vue'),
       },
+      {
+        path: '/newschedule',
+        component: () => import('pages/scheduling/NewSchedule.vue'),
+      },
     ],
   },
 

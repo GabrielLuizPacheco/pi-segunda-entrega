@@ -6,4 +6,5 @@ export interface IScheduling {
   specialty?: string;
   completed?: boolean;
   canceled?: boolean;
+  absent?: boolean;
 }

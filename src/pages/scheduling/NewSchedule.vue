@@ -20,7 +20,70 @@
         />
         <span>{{ lastAppointment.location }}</span>
       </div>
-      <Button label="Confirmar" type="submit" />
+      <div class="row items-center justify-center q-my-lg">
+        <q-date
+          class="full-width"
+          v-model="date"
+          :options="optionsFn"
+          mask="DD/MM/YYYY"
+        />
+      </div>
+      <div class="row items-center">
+        <div class="row items-center q-mr-lg col-6">
+          <q-icon
+            name="mdi-calendar-check"
+            class="q-mr-sm"
+            size="18px"
+            color="dark"
+          />
+          <span>{{ date ? date : '- - - - - - - -' }}</span>
+        </div>
+        <q-btn
+          class="row items-center text-dark"
+          unelevated
+          outline
+          :disable="!!!date"
+        >
+          <q-icon name="mdi-clock" class="q-mr-sm" size="18px" />
+          <span>{{ time ? time : '- - : - -' }}</span>
+          <q-popup-proxy
+            cover
+            transition-show="scale"
+            transition-hide="scale"
+            @before-show="updateProxy"
+          >
+            <q-time
+              v-model="proxyTime"
+              :hour-options="hourOptionsTime"
+              :minute-options="minuteOptionsTime"
+            >
+              <div class="row items-center justify-end q-gutter-sm">
+                <q-btn label="Cancelar" color="primary" flat v-close-popup />
+                <q-btn
+                  label="OK"
+                  color="primary"
+                  flat
+                  v-close-popup
+                  @click="save"
+                />
+              </div>
+            </q-time>
+          </q-popup-proxy>
+        </q-btn>
+      </div>
+      <div class="q-mt-sm">
+        <q-icon name="mdi-doctor" class="q-mr-sm" size="18px" color="primary" />
+        <span class="dark">{{
+          time ? lastAppointment.doctor : '- - - - - - - - - -'
+        }}</span>
+      </div>
+
+      <Button
+        label="Confirmar"
+        type="submit"
+        class="q-mt-lg"
+        :disable="!!!time"
+      />
     </q-form>
   </q-page>
 </template>
@@ -31,25 +94,63 @@ import Button from 'src/components/Button.vue';
 import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
 import { useSchedulingStore } from 'src/stores/scheduling-store';
+import { ref } from 'vue';
+import { IScheduling } from 'src/interface/scheduling';
 
 const router = useRouter();
-const { lastAppointment } = useSchedulingStore();
-
 const $q = useQuasar();
+const { lastAppointment, schedules } = useSchedulingStore();
+const date = ref('');
+const time = ref('');
+const proxyTime = ref('');
 
-function dialog() {
+const hourOptionsTime = [8, 9, 10, 12, 13, 14, 15, 16];
+const minuteOptionsTime = [5, 15, 30, 45];
+
+function dialog(title: string, message: string, onclick: () => void) {
   $q.dialog({
-    title: 'Sucesso!',
-    message: 'Edição de perfil feita com sucesso!',
+    title: title,
+    message: message,
     persistent: true,
     ok: {
-      onclick: () => router.go(-1),
+      onclick: onclick(),
     },
   });
 }
 
+const optionsFn = (date) => {
+  return date >= '2024/05/12';
+};
+
+function updateProxy() {
+  proxyTime.value = time.value;
+}
+
+function save() {
+  time.value = proxyTime.value;
+}
+
 async function onSubmit() {
-  return true;
+  const newSchedule: IScheduling = {
+    date: date,
+    doctor: lastAppointment.doctor,
+    location: lastAppointment.location,
+    specialty: lastAppointment.specialty,
+    time: time,
+  };
+
+  const hasAppointment = schedules.find(
+    (x) => !x.completed && !x.canceled && !x.absent
+  );
+
+  if (!!hasAppointment) {
+    dialog('Alerta!', 'Há uma consulta pendente', () => undefined);
+    return;
+  }
+
+  schedules.push(newSchedule);
+
+  dialog('Sucesso!', 'Agendamento feito com sucesso', () => router.go(-1));
 }
 </script>
 

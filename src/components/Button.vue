@@ -5,6 +5,7 @@
     :color="secondary ? 'white' : 'primary'"
     :text-color="secondary ? 'primary' : 'white'"
     :label="label"
+    :disable="disable"
   />
 </template>
 
@@ -12,6 +13,7 @@
 interface ButtonProps {
   label: string;
   secondary?: boolean;
+  disable?: boolean;
 }
 
 defineProps<ButtonProps>();

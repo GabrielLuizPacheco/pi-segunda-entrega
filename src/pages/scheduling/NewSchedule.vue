@@ -83,6 +83,7 @@
         type="submit"
         class="q-mt-lg"
         :disable="!!!time"
+        :loading="loading"
       />
     </q-form>
   </q-page>
@@ -103,6 +104,7 @@ const { lastAppointment, schedules } = useSchedulingStore();
 const date = ref('');
 const time = ref('');
 const proxyTime = ref('');
+const loading = ref(false);
 
 const hourOptionsTime = [8, 9, 10, 12, 13, 14, 15, 16];
 const minuteOptionsTime = [5, 15, 30, 45];
@@ -131,6 +133,7 @@ function save() {
 }
 
 async function onSubmit() {
+  loading.value = true;
   const newSchedule: IScheduling = {
     date: date,
     doctor: lastAppointment.doctor,
@@ -145,10 +148,13 @@ async function onSubmit() {
 
   if (!!hasAppointment) {
     dialog('Alerta!', 'Há uma consulta pendente', () => undefined);
+    loading.value = false;
     return;
   }
 
   schedules.push(newSchedule);
+
+  loading.value = false;
 
   dialog('Sucesso!', 'Agendamento feito com sucesso', () => router.go(-1));
 }

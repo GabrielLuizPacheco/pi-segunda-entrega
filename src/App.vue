@@ -2,6 +2,11 @@
   <router-view />
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
+<style>
+.button {
+  height: 3.5rem;
+  border-radius: 5px;
+}
+</style>

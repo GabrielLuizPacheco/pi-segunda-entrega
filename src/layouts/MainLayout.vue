@@ -12,7 +12,8 @@
           name="mdi-calendar"
           class="cursor-pointer"
           size="32px"
-          :color="route.path === '/' ? 'primary' : 'grey-6'"
+          :color="route.path === '/schedules' ? 'primary' : 'grey-6'"
+          @click="router.push({ path: '/schedules' })"
         />
       </div>
       <div class="col row justify-center">
@@ -39,16 +40,9 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
-import { useAuthStore } from 'src/stores/auth-store';
 
 const route = useRoute();
 const router = useRouter();
-const { logout } = useAuthStore();
-
-function onLogout() {
-  logout();
-  router.push({ path: '/' });
-}
 </script>
 
 <style scoped>

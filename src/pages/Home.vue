@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <q-scroll-area style="height: 75vh" v-if="!loading && adresses.length > 1">
+    <q-scroll-area style="height: 75vh" v-if="!loading && adresses.length > 0">
       <q-list>
         <q-item
           v-for="address in adresses"

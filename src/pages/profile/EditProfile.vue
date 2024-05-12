@@ -25,6 +25,9 @@
         :error-msg="v$.phone.$errors[0]?.$message"
       />
       <Button label="Salvar" type="submit" />
+      <div class="row items-center justify-end q-mt-lg text-dark">
+        Encerrar conta
+      </div>
     </q-form>
   </q-page>
 </template>
@@ -34,7 +37,7 @@ import Input from 'src/components/Input.vue';
 import Select from 'src/components/Select.vue';
 import Header from 'src/components/Header.vue';
 import Button from 'src/components/Button.vue';
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import rules from 'src/rules/profile.rules';
 import { IUser } from 'src/interface/user';
@@ -68,8 +71,6 @@ async function onSubmit() {
   Object.assign(user, newInfos);
 
   dialog();
-
-  //router.go(-1);
 }
 </script>
 

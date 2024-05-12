@@ -41,7 +41,7 @@ export default route(function (/* { store, ssrContext } */) {
     const isLoggedIn = useAuthStore().isLoggedIn;
 
     if (requiredAuth && !isLoggedIn) {
-      next('/login');
+      next('/');
     } else {
       if (hideForAuth && isLoggedIn) {
         next('/home');

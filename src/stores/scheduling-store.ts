@@ -13,6 +13,10 @@ export const useSchedulingStore = defineStore('scheduling', {
     setScheduling(scheduling: IScheduling) {
       this.schedules.push(scheduling);
     },
+    clearSchedules() {
+      this.lastAppointment = {} as IScheduling;
+      this.schedules = [] as IScheduling[];
+    },
   },
   persist: true,
 });

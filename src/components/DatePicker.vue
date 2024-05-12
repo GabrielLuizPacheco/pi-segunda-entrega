@@ -38,10 +38,3 @@ const date = defineModel<string>();
 
 defineProps<DatePickerProps>();
 </script>
-
-<style scoped>
-.button {
-  height: 3.5rem;
-  border-radius: 5px;
-}
-</style>

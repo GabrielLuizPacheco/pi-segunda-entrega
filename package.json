@@ -21,7 +21,8 @@
     "pinia-plugin-persistedstate": "^3.2.1",
     "quasar": "^2.8.0",
     "vue": "^3.2.29",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vue-uuid": "^3.0.0"
   },
   "devDependencies": {
     "@quasar/app-vite": "^1.4.3",

@@ -166,10 +166,3 @@ async function nextStep(val: number) {
   }
 }
 </script>
-
-<style scoped>
-.button {
-  height: 3.5rem;
-  border-radius: 5px;
-}
-</style>

@@ -25,6 +25,10 @@ const routes: RouteRecordRaw[] = [
         path: '/profile',
         component: () => import('pages/profile/Profile.vue'),
       },
+      {
+        path: '/schedules',
+        component: () => import('pages/scheduling/Schedules.vue'),
+      },
     ],
   },
   {
@@ -45,6 +49,10 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/profile/help',
         component: () => import('pages/profile/Help.vue'),
+      },
+      {
+        path: '/newschedule',
+        component: () => import('pages/scheduling/NewSchedule.vue'),
       },
     ],
   },

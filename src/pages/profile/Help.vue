@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <Header title="Ajuda" class="q-mb-lg" />
-    <label style="font-size: 22px" class="text-grey-6 q-ml-md"
+    <label style="font-size: 22px" class="text-grey-6 q-ml-lg"
       >Perguntas frequentes</label
     >
     <q-list class="q-mt-md">
@@ -9,7 +9,7 @@
         v-for="question in questions"
         :key="question.id"
         clickable
-        class="item row items-center q-mx-md q-py-md"
+        class="item row items-center q-mx-lg q-py-md"
       >
         <span class="text-grey-9">{{ question.description }}</span>
       </q-item>

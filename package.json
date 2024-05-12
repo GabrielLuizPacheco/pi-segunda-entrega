@@ -1,8 +1,8 @@
 {
   "name": "agendamento",
   "version": "0.0.1",
-  "description": "A Quasar Project",
-  "productName": "Agendamento",
+  "description": "Software de agendamento de consultas medicas",
+  "productName": "Agendamento de consultas",
   "author": "Gabriel Luiz <gabrielluizpacheco260@gmail.com>",
   "private": true,
   "scripts": {

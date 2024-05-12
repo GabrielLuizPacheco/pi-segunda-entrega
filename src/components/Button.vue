@@ -5,6 +5,8 @@
     :color="secondary ? 'white' : 'primary'"
     :text-color="secondary ? 'primary' : 'white'"
     :label="label"
+    :disable="disable"
+    :loading="loading"
   />
 </template>
 
@@ -12,14 +14,9 @@
 interface ButtonProps {
   label: string;
   secondary?: boolean;
+  disable?: boolean;
+  loading?: boolean;
 }
 
 defineProps<ButtonProps>();
 </script>
-
-<style scoped>
-.button {
-  height: 3.5rem;
-  border-radius: 5px;
-}
-</style>

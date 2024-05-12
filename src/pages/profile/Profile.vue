@@ -42,11 +42,14 @@ import Header from 'src/components/Header.vue';
 import profileOptions from 'src/constants/profileOptions.json';
 import { useAuthStore } from 'src/stores/auth-store';
 import { useRouter } from 'vue-router';
+import { useSchedulingStore } from 'src/stores/scheduling-store';
 
 const router = useRouter();
 const { user, logout } = useAuthStore();
+const { clearSchedules } = useSchedulingStore();
 
 function onLogout() {
+  clearSchedules();
   logout();
   router.push({ path: '/' });
 }

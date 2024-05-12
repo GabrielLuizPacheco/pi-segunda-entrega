@@ -20,6 +20,7 @@
           :type="showPassword ? 'text' : 'password'"
           :icon="showPassword ? 'mdi-lock-open' : 'mdi-lock'"
           @icon-clicked="showPassword = !showPassword"
+          :error-msg="v$_currentPassword.currentPassword.$errors[0]?.$message"
         />
       </q-step>
 
@@ -98,6 +99,13 @@ function dialog() {
   });
 }
 
+const currentPasswordRules = computed(() => ({
+  currentPassword: {
+    required: helpers.withMessage('Campo obrigatório', required),
+    validPassword: helpers.withMessage('Senha inválida', passwordValidation),
+  },
+}));
+
 const newPasswordRules = computed(() => ({
   password: {
     required: helpers.withMessage('Campo obrigatório', required),
@@ -111,16 +119,19 @@ const newPasswordRules = computed(() => ({
   },
 }));
 
+const v$_currentPassword = useVuelidate(currentPasswordRules, pass);
 const v$_newPassword = useVuelidate(newPasswordRules, pass);
 
 async function nextStep(val: number) {
   switch (val) {
     case 1:
+      const validCurrentPassword = await v$_currentPassword.value.$validate();
+      if (!validCurrentPassword) return;
       showPassword.value = false;
       return (step.value = 2);
     case 2:
-      const validPassword = await v$_newPassword.value.$validate();
-      if (!validPassword) return;
+      const validNewPassword = await v$_newPassword.value.$validate();
+      if (!validNewPassword) return;
       dialog();
   }
 }

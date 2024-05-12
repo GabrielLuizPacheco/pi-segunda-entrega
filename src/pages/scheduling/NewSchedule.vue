@@ -97,6 +97,7 @@ import { useQuasar } from 'quasar';
 import { useSchedulingStore } from 'src/stores/scheduling-store';
 import { ref } from 'vue';
 import { IScheduling } from 'src/interface/scheduling';
+import { uuid } from 'vue-uuid';
 
 const router = useRouter();
 const $q = useQuasar();
@@ -121,7 +122,7 @@ function dialog(title: string, message: string, onclick: () => void) {
 }
 
 const optionsFn = (date) => {
-  return date >= '2024/05/12';
+  return date >= '2024/05/25';
 };
 
 function updateProxy() {
@@ -135,6 +136,7 @@ function save() {
 async function onSubmit() {
   loading.value = true;
   const newSchedule: IScheduling = {
+    id: uuid.v1(),
     date: date,
     doctor: lastAppointment.doctor,
     location: lastAppointment.location,

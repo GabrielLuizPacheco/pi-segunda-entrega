@@ -1,4 +1,5 @@
 export interface IScheduling {
+  id?: string;
   doctor?: string;
   date?: string;
   time?: string;

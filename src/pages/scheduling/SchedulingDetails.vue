@@ -86,12 +86,15 @@ interface DetailsProps {
 }
 
 const { scheduling } = defineProps<DetailsProps>();
+const { schedules } = useSchedulingStore();
 const closeModal = defineModel<boolean>();
 
 const curretStatus = ref({} as any);
 const tab = ref('details');
 
 function removeSchedule() {
+  const index = schedules.findIndex((obj) => obj.id == scheduling?.id);
+  schedules[index].canceled = true;
   closeModal.value = false;
 }
 

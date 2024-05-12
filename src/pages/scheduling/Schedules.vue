@@ -49,7 +49,7 @@
       <q-list class="q-pa-md">
         <ScheduleItem
           v-for="scheduling in schedules"
-          :key="scheduling.location"
+          :key="scheduling.id"
           :scheduling="scheduling"
           :disabled="selectedList > 1"
           @on-click="moreDetails(scheduling)"
@@ -67,7 +67,7 @@
 import Header from 'src/components/Header.vue';
 import { useSchedulingStore } from 'src/stores/scheduling-store';
 import ScheduleItem from 'src/components/ScheduleItem.vue';
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount, watch } from 'vue';
 import { IScheduling } from 'src/interface/scheduling';
 import Modal from 'src/components/Modal.vue';
 import SchedulingDetails from './SchedulingDetails.vue';
@@ -100,10 +100,16 @@ function onClickHistory() {
   schedules.value = [];
   selectedList.value = 2;
   schedules.value = schedulingStore.schedules.filter(
-    (x) => x.completed && x.canceled && x.absent
+    (x) => x.completed || x.canceled || x.absent
   );
   loading.value = false;
 }
+
+watch(openModal, () => {
+  if (!openModal.value && selectedList.value < 2) {
+    onClickAppointments();
+  }
+});
 
 onBeforeMount(() => {
   onClickAppointments();
